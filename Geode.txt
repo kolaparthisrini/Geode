@@ -1,0 +1,217 @@
+GEmfire(30-May)
+---------------
+
+Pivotal Gemfire(Apache geode 1.9.0)
+
+Gemfire is licensed tool.APache geode is opensource version of gemfire.
+Gemfire --some additional admin feature.
+
+https://geode.apache.org/
+
+<dependencies>
+  <dependency>
+    <groupId>org.apache.geode</groupId>
+    <artifactId>geode-core</artifactId>
+    <version>1.9.0</version>
+  </dependency>
+</dependencies>
+========================================================
+gfsh ----geode fish
+
+gfsh(it is geode utility)---is used for creating server,managing servers,adding storages and for lookup operations.
+
+
+RDBMS---->with respect tostorage(store data in the form of tables)
+it will store on the top of harddisk--permanent
+
+DBMS--->?it is management software
+
+Oracle---rdbms
+mongodb----nosql
+
+MEMORY vs Hard DISK
+------------------------
+Memory is RAM and it is volatile
+Hard disk is permanent storage
+
+i want to store a picture permanently.
+
+which one is faster?
+ u r having data in RAM
+ u r having data in hard disk
+ 
+ SIZE? HARD DISK
+ 
+ BIG MEMORY?
+ 
+ Big memory computers are machines with a large amount of RAM memory. (but it is very costly)
+ The computers are required for databases, graph analytics, or more generally, data science and big data.
+ 
+ CACHE:?
+ temporray storage(it will be on the top of RAM)
+ 
+ Performance( early loading/lazy loading)
+ 
+ Hibernate 2nd level.
+ 
+ Vendors: MEMcache/EH cache/Swarn cache....etc
+ 
+ conclu)Big memeory(cache),we r going store data there for faster retrivelal.
+ 
+ SQLITE:inbuilt db in ur mobile is sqlite.
+ SQLITE is an example in-memory database.
+ 
+ IN-MEMORY DB:SQLITE,Apache derby,HSQLDB,h2.....etc(u r maintaining databses(tables)
+ 
+ i want to cache my data for faster retrivals even if i am having petabytes of data?
+ Sol) in memory grid
+ 
+ 
+ Cacahe:data will not be in table format.it will be stored in some datastructure(hashmap).
+ 
+ IN MEMory data GRID:hazelcast\gemfire\geode\terracotte.....etc
+ will be i  distrubuted mode. 
+ 
+JNDI/UDDI(lookup): telephone Directory
+lookup operation(key is mobile no,value is addresss)
+
+in the same way wen were we work on multiple middleware services configured on servers,if we need to access 
+
+it then we r going to use JNDI
+
+Srinivas---want to call a person who is working at US.
+VSNl----lookup operation
+
+Wen we want to set environment for Apache geode.First step
+1)Create "lookup" artifact
+sol)
+In geode lookup is called as "locator".
+r responsible for corrdination between different memebers of geode cluster and for lookupoperations.
+2)create a "region"
+Region:it is a place were ur data for ur datagrid exists
+3)create a server artifact
+4)push ur data to the server(put/get operations)
+becausee ur data in datagrids will be stored in the form of hashmap's.
+5)once the task is completed close the connections(disconnect) 
+
+
+by default geode will use jetty server on the backend to run ur web tools.
+web tool:pulse
+port no :7070
+
+Note: By default Rest modules are disabled in ur geode.We need to enable the services.
+
+mainly u will deal with REST API's:http://localhost:8080/gemfire-api/v1/region1
+
+gemfire-api/v1/{placeholders}
+
+
+
+
+
+
+
+
+
+
+
+start locator
+     --name=locator1
+     --port=41111
+     --dir=locator
+     --properties-heap=50m
+     --initial-heap=50m
+     --max-heap=50m
+	 
+Shutdown the cluster.
+---------------------
+
+gfsh>shutdown --include-locators=true	 
+
+
+echo --string=$* //to display all predefined SHELL variables
+set variable --name aaa --value bbbb
+hint server //find list of commands of server
+
+create region --name=region1 --type=
+
+PARTITION:
+A region configured with the PARTITION region shortcut is partitioned across each peer member that created the region.
+
+PARTITION_REDUNDANT:
+The region maintains an extra copy of the data in memory.
+
+PARTITION_PERSISTENT:
+A region configured with the PARTITION_PERSISTENT
+region shortcut has state that is partitioned across each peer member that creates the region. The region writes
+its state to disk and can recover that state when the member restarts. 
+
+PARTITION_REDUNDANT_PERSISTENT
+PARTITION_OVERFLOW
+PARTITION_REDUNDANT_OVERFLOW
+PARTITION_PERSISTENT_OVERFLOW
+PARTITION_REDUNDANT_PERSISTENT_OVERFLOW
+PARTITION_HEAP_LRU
+PARTITION_REDUNDANT_HEAP_LRU
+
+REPLICATE:
+A region configured with the REPLICATE region shortcut has 
+local state that is kept in sync with all other peer regions configured with a REPLICATE data policy.
+
+REPLICATE_PERSISTENT:
+A region configured with the REPLICATE_PERSISTENT region shortcut has local state that is kept in sync with all other peer regions that are configured 
+with a REPLICATE data policy. The region writes its state to disk and recovers that state when the member restarts.
+
+REPLICATE_OVERFLOW
+REPLICATE_PERSISTENT_OVERFLOW
+REPLICATE_HEAP_LRU
+
+LOCAL:
+The region does not distribute data and operations to other caches.
+
+LOCAL_PERSISTENT
+LOCAL_HEAP_LRU
+
+LOCAL_OVERFLOW:
+The region does not distribute data and operations to other caches.
+The region moves the values of entries to disk when it detects that the JVM is running low on memory.
+LOCAL_PERSISTENT_OVERFLOW
+PARTITION_PROXY
+PARTITION_PROXY_REDUNDANT
+REPLICATE_PROXY:
+A region configured with the REPLICATE_PROXY region shortcut has no local state and forwards all 
+operations to a peer region configured with the REPLICATE or REPLICATE_PERSISTENT region shortcut.
+
+
+XML Definition of REPLICATE_PERSISTENT
+<region name="myRPregion">
+    <region-attributes 
+        scope="distributed-ack" 
+        data-policy="empty"/>
+</region>
+
+For JArs:
+===========
+deploy --jars=group1_functions.jar
+list deployed
+undeploy
+ 
+
+How do use an In Memory Data Grid?
+
+Simply install your servers in a single site or across multiple sites.
+Each group of servers within a site is referred to as a cluster.
+Install the IMDG software on all the servers and choose the appropriate topology for the product.
+For multi-site operations I always recommend a partitioned and replicated cache.
+Setup your APIs, or GUI interfaces to allow replicated between the various servers.
+Develop your data model and the business logic around the model.
+
+
+Areas:
+---------
+Internationalization
+json tokens
+
+
+
+
